@@ -1,0 +1,23 @@
+{
+  "name": "blog-with-express",
+  "version": "1.0.0",
+  "description": "A simple blog API with expressjs and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alimahdiyar/blog-with-express.git"
+  },
+  "author": "Ali Mahdiyar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alimahdiyar/blog-with-express/issues"
+  },
+  "homepage": "https://github.com/alimahdiyar/blog-with-express#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.5"
+  }
+}
