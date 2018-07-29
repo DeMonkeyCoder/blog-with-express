@@ -1,11 +1,10 @@
-const express = require('express')
-const app = express()
-require('./app/models/user');
+const express = require('express');
+const app = express();
 
 const mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/testblog'); // connect to our database
 
-var blog = require('./app/views/blog')
+var blog = require('./routes/blog');
 
-app.use('/blog/api', blog)
+app.use('/blog/api', blog);
 app.listen(3000)

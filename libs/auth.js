@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken'
 import _ from 'lodash'
+const JWT_SECRET = require('../config').JWT_SECRET;
 
 export function verifyJWTToken(token) 
 {
   return new Promise((resolve, reject) =>
   {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => 
+    jwt.verify(token, JWT_SECRET, (err, decodedToken) => 
     {
       if (err || !decodedToken)
       {
@@ -41,7 +42,7 @@ export function createJWToken(details)
 
   let token = jwt.sign({
      data: details.sessionData
-    }, process.env.JWT_SECRET, {
+    }, JWT_SECRET, {
       expiresIn: details.maxAge,
       algorithm: 'HS256'
   })
