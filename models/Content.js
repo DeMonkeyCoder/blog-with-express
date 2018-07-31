@@ -5,11 +5,11 @@ const ContentSchema = new mongoose.Schema({
     body: { type : String, required: [true, "can't be blank"], trim : true },
     user: { type : mongoose.Schema.ObjectId, ref : 'User' },
     createdAt  : { type : Date, default : Date.now },
-    /*comments: [{
+    comments: [{
         body: { type : String, required: [true, "can't be blank"] },
-        //user: { type : Schema.ObjectId, ref : 'User' },
+        user: { type : Schema.ObjectId, ref : 'User' },
         createdAt: { type : Date, default : Date.now }
-    }]*/
+    }]
   });
   
 module.exports = mongoose.model('Content', ContentSchema);
