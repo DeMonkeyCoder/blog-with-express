@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken'
-import _ from 'lodash'
+var jwt = require('jsonwebtoken');
+var _  = require('lodash');
 const JWT_SECRET = require('../config').JWT_SECRET;
 
-export function verifyJWTToken(token) 
+function verifyJWTToken(token) 
 {
   return new Promise((resolve, reject) =>
   {
@@ -19,7 +19,7 @@ export function verifyJWTToken(token)
 }
 
 
-export function createJWToken(details)
+function createJWToken(details)
 {
   if (typeof details !== 'object')
   {
@@ -50,11 +50,4 @@ export function createJWToken(details)
   return token
 }
 
-
-export default {
-  verifyJWTToken,
-  createJWToken
-}
-
-
-
+module.exports = {verifyJWTToken , createJWToken}

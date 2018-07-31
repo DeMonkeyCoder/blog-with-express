@@ -3,23 +3,32 @@ var router = express.Router()
 //TODO: var {Content, User} = require('../models/index');
 //var User = require('../models/User');
 var Content = require('../models/Content');
+var authFuncs = require('../libs/auth');
 
 router.route('/')
 
     .post(function(req, res) {
+        authFuncs.verifyJWTToken(req.body.token).then((decodedToken) =>
+        {
+            var content = new Content(); 
+            content.title = req.body.title;
+            content.body = req.body.body;
+            content.user = decodedToken.data._doc._id;
+            content.save(function(err) {
+                if (err)
+                    res.send(err);
 
-        var content = new Content();      
-        console.log(req.body);
-        content.title = req.body.title;
-        content.body = req.body.body;
-
-        // save the bear and check for errors
-        content.save(function(err) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'post created!' });
-        });
+                res.json({ message: 'post created!' });
+            });
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.status(401)
+                .json({
+                message: err || "Token Validation failed."
+                })
+        })
 
     })
 
@@ -44,7 +53,6 @@ router.route('/:content_id')
 
     .put(function(req, res) {
 
-        // use our bear model to find the bear we want
         Content.findById(req.params.content_id, function(err, content) {
 
             if (err)
